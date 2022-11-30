@@ -12,15 +12,13 @@ public class Main {
     }
 
     private static void doWork(String path, Consumer<String> consumer) {
-        try {
-            BufferedReader bufferedReader = Util.getBufferedReader(path);
+        try (BufferedReader bufferedReader = Util.getBufferedReader(path)) {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
                 consumer.accept(line);
             }
 
-            bufferedReader.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
