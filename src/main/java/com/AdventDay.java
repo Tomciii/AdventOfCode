@@ -5,6 +5,10 @@ import java.util.function.Consumer;
 
 public class AdventDay {
 
+    public static void day1(){
+        doWork("file1.txt", System.out::println);
+    }
+
     public static void doWork(String path, Consumer<String> consumer) {
         try (BufferedReader bufferedReader = Util.getBufferedReader(path)) {
             String line;
