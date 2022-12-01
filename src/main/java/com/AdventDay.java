@@ -13,7 +13,6 @@ public class AdventDay {
     public static void day1_1(String path) {
 
         List<String> input = Util.readFile(path);
-        System.out.println(input);
         List<Integer> result = new ArrayList<>();
         int currentSum = 0;
         int biggestSum = 0;
@@ -22,18 +21,20 @@ public class AdventDay {
             if (line.isEmpty()) {
                 if (currentSum > biggestSum) {
                     biggestSum = currentSum;
-                    result.add(biggestSum);
-                }
 
+                }
+                result.add(currentSum);
                 currentSum = 0;
             } else {
                 currentSum += Integer.valueOf(line);
             }
         }
 
-        System.out.println(result);
         Collections.reverse(result);
-        System.out.println("Biggest amount: " + result.get(0));
-        System.out.println("Sum of biggest 3: " + result.stream().limit(3).mapToInt(a -> a).sum());
+        List<Integer> sorted = result.stream().sorted().toList();
+
+        int biggestThreeSum =sorted.get(sorted.size() - 1) + sorted.get(sorted.size() - 2) + sorted.get(sorted.size() - 3) ;
+        System.out.println("Biggest amount: " + sorted.get(sorted.size() - 1));
+        System.out.println("Sum of biggest 3: " + biggestThreeSum );
     }
 }
