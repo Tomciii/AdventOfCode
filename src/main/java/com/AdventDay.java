@@ -1,16 +1,23 @@
 package com;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AdventDay {
 
-    public static void day1() {
-        day1_1("day1.txt");
+    public static void day2(){
+        solveDay2("day2.txt");
     }
 
-    public static void day1_1(String path) {
+    private static void solveDay2(String path) {
+
+    }
+
+    public static void day1() {
+        solveDay1("day1.txt");
+    }
+
+    private static void solveDay1(String path) {
 
         List<String> input = Util.readFile(path);
         List<Integer> result = new ArrayList<>();
@@ -21,8 +28,8 @@ public class AdventDay {
             if (line.isEmpty()) {
                 if (currentSum > biggestSum) {
                     biggestSum = currentSum;
-
                 }
+
                 result.add(currentSum);
                 currentSum = 0;
             } else {
@@ -30,11 +37,10 @@ public class AdventDay {
             }
         }
 
-        Collections.reverse(result);
         List<Integer> sorted = result.stream().sorted().toList();
+        int biggestThreeSum = sorted.get(sorted.size() - 1) + sorted.get(sorted.size() - 2) + sorted.get(sorted.size() - 3) ;
 
-        int biggestThreeSum =sorted.get(sorted.size() - 1) + sorted.get(sorted.size() - 2) + sorted.get(sorted.size() - 3) ;
-        System.out.println("Biggest amount: " + sorted.get(sorted.size() - 1));
+        System.out.println("Biggest amount: " + biggestSum);
         System.out.println("Sum of biggest 3: " + biggestThreeSum );
     }
 }
