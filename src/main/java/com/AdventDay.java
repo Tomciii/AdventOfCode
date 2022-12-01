@@ -1,24 +1,39 @@
 package com;
 
-import java.io.BufferedReader;
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AdventDay {
 
-    public static void day1(){
-        doWork("file1.txt", System.out::println);
+    public static void day1() {
+        day1_1("day1.txt");
     }
 
-    public static void doWork(String path, Consumer<String> consumer) {
-        try (BufferedReader bufferedReader = Util.getBufferedReader(path)) {
-            String line;
+    public static void day1_1(String path) {
 
-            while ((line = bufferedReader.readLine()) != null) {
-                consumer.accept(line);
+        List<String> input = Util.readFile(path);
+        System.out.println(input);
+        List<Integer> result = new ArrayList<>();
+        int currentSum = 0;
+        int biggestSum = 0;
+
+        for (String line : input) {
+            if (line.isEmpty()) {
+                if (currentSum > biggestSum) {
+                    biggestSum = currentSum;
+                    result.add(biggestSum);
+                }
+
+                currentSum = 0;
+            } else {
+                currentSum += Integer.valueOf(line);
             }
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
         }
+
+        System.out.println(result);
+        Collections.reverse(result);
+        System.out.println("Biggest amount: " + result.get(0));
+        System.out.println("Sum of biggest 3: " + result.stream().limit(3).mapToInt(a -> a).sum());
     }
 }
