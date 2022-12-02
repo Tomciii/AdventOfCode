@@ -6,6 +6,9 @@ import java.util.function.Function;
 
 public class PuzzleSolver {
 
+    /**
+     * Day 2_2: Rock Paper Scissors Puzzle
+     */
     public static Function<String,Integer> solveDay2_2 = (path) -> {
         List<String> input = Util.readFile(path);
         int result = 0;
@@ -48,6 +51,9 @@ public class PuzzleSolver {
         return result;
     };
 
+    /**
+     * Day 2: Rock Paper Scissors Puzzle
+     */
     public static Function<String, Integer> solveDay2 = (path) -> {
         List<String> input = Util.readFile(path);
         int result = 0;
@@ -85,6 +91,9 @@ public class PuzzleSolver {
         return result;
     };
 
+    /**
+     * Day 1: Get the highest sum / total of highest 3 sums
+     */
     public static Function<String, List<Integer>> solveDay1 = (path) -> {
         List<Integer> result = new ArrayList<>();
         List<String> input = Util.readFile(path);
