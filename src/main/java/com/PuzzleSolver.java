@@ -60,9 +60,7 @@ public class PuzzleSolver {
 
                 if (lineInArray[0].equals("A")){
                     result = result + 3;
-                }
-
-                if (lineInArray[0].equals("C")){
+                } else if (lineInArray[0].equals("C")){
                     result = result + 6;
                 }
             } else if (lineInArray[1].equals("Y")){
@@ -86,8 +84,6 @@ public class PuzzleSolver {
 
         return result;
     };
-
-
 
     public static Function<String, List<Integer>> solveDay1 = (path) -> {
         List<Integer> result = new ArrayList<>();
