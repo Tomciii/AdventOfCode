@@ -2,14 +2,11 @@ package com;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class AdventDay {
+public class PuzzleSolver {
 
-    public static void day2(){
-        System.out.println(solveDay2_2("day2.txt"));
-    }
-
-    private static Integer solveDay2_2(String path) {
+    public static Function<String,Integer> solveDay2_2 = (path) -> {
         List<String> input = Util.readFile(path);
         int result = 0;
 
@@ -49,9 +46,9 @@ public class AdventDay {
         }
 
         return result;
-    }
+    };
 
-    private static Integer solveDay2(String path) {
+    public static Function<String, Integer> solveDay2 = (path) -> {
         List<String> input = Util.readFile(path);
         int result = 0;
 
@@ -88,13 +85,11 @@ public class AdventDay {
         }
 
         return result;
-    }
+    };
 
-    public static void day1() {
-        System.out.println(solveDay1("day1.txt"));
-    }
 
-    private static List<Integer> solveDay1(String path) {
+
+    public static Function<String, List<Integer>> solveDay1 = (path) -> {
         List<Integer> result = new ArrayList<>();
         List<String> input = Util.readFile(path);
         List<Integer> calorieList = new ArrayList<>();
@@ -121,5 +116,5 @@ public class AdventDay {
         result.add(biggestThreeSum);
 
         return result;
-    }
+    };
 }

@@ -3,6 +3,6 @@ package com;
 public class Main {
 
     public static void main(String[] args) {
-        AdventDay.day2();
+        PuzzleResultPrinter.printResult(PuzzleSolver.solveDay1,"day1.txt");
     }
 }
