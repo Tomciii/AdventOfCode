@@ -6,6 +6,9 @@ import java.util.function.Function;
 
 public class PuzzleSolver {
 
+    /**
+     * Find the matching characters and return sum
+     */
     public static Function<String, Integer> solveDay3_2 = (path) -> {
         Integer result = 0;
         List<String> input = Util.readFile(path);
@@ -135,6 +138,9 @@ public class PuzzleSolver {
         return result;
     };
 
+    /**
+     * Find the matching characters and return sum
+     */
     public static Function<String, Integer> solveDay3 = (path) -> {
         Integer result = 0;
         List<String> input = Util.readFile(path);
