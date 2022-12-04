@@ -1,10 +1,53 @@
 package com;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
 public class PuzzleSolver {
+
+    /**
+     * Check if list contains other list
+     */
+    public static Function<String,Integer> solveDay4 = (path) -> {
+      Integer result = 0;
+      List<String> input = Util.readFile(path);
+
+      for (String line : input){
+          List<Integer> leftInput = convertLineToIntList(convertInputToIntArray(line,0));
+          List<Integer> rightInput = convertLineToIntList(convertInputToIntArray(line,1));
+
+          // leftInput.containsAll(rightInput) or vice versa for first puzzle
+
+
+       LOOP:   for (int i = 0; i < leftInput.size(); i++){
+                if (rightInput.contains(leftInput.get(i))){
+                    result++;
+                    break LOOP;
+                }
+          }
+      }
+
+      return result;
+    };
+
+    private static List<Integer> convertLineToIntList(int[] array){
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = array[0]; i < array[1]; i++){
+            result.add(i);
+        }
+
+        result.add(array[1]);
+
+        return result;
+    }
+
+    private static int[] convertInputToIntArray(String line, int index) {
+        String[] splitLine = line.split(",");
+        return Arrays.stream(splitLine[index].split("-")).mapToInt(Integer::parseInt).toArray();
+    }
 
     /**
      * Find the matching characters and return sum
