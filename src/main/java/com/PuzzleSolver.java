@@ -18,7 +18,7 @@ public class PuzzleSolver {
             lists.add(new ArrayList<>());
         }
 
-        fillStacks_day5(input, lists);
+        fillStacks_day5(input, lists, amountOfLists);
         removeHeaderFromInput(input, 10);
 
         for (String line : input){
@@ -56,18 +56,12 @@ public class PuzzleSolver {
         return builder.toString();
     };
 
-    private static void fillStacks_day5(List<String> input, List<List<Character>> list) {
+    private static void fillStacks_day5(List<String> input, List<List<Character>> list, int amountOfLists) {
         for (String line : input){
             if (line.charAt(1) != '1'){
-                addItemToList_Day5(list.get(0), line, 1);
-                addItemToList_Day5(list.get(1), line, 5);
-                addItemToList_Day5(list.get(2), line, 9);
-                addItemToList_Day5(list.get(3), line, 13);
-                addItemToList_Day5(list.get(4), line, 17);
-                addItemToList_Day5(list.get(5), line, 21);
-                addItemToList_Day5(list.get(6), line, 25);
-                addItemToList_Day5(list.get(7), line, 29);
-                addItemToList_Day5(list.get(8), line, 33);
+                for (int i = 0; i < amountOfLists; i++){
+                    addItemToList_Day5(list.get(i), line, 1 + i * 4);
+                }
             } else {
                 break;
             }
