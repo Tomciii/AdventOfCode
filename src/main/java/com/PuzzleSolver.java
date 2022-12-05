@@ -19,7 +19,7 @@ public class PuzzleSolver {
         }
 
         fillStacks_day5(input, lists);
-        removeHeaderFromHeader(input, 10);
+        removeHeaderFromInput(input, 10);
 
         for (String line : input){
             String[] inputStrings = line.split(" ");
@@ -74,7 +74,7 @@ public class PuzzleSolver {
         }
     }
 
-    private static void removeHeaderFromHeader(List<String> input, int index) {
+    private static void removeHeaderFromInput(List<String> input, int index) {
         for (int i = 0; i < index; i++){
             input.remove(0);
         }
