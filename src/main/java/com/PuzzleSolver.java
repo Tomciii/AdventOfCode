@@ -5,6 +5,9 @@ import java.util.function.Function;
 
 public class PuzzleSolver {
 
+    /**
+     * Moving Items from the stacks around
+     */
     public static Function<String, String> solveDay5 = (path) -> {
         List<String> input = Util.readFile(path);
 
@@ -16,18 +19,16 @@ public class PuzzleSolver {
         }
 
         fillStacks_day5(input, lists);
-        removeInputLines_Day5(input, 10);
+        removeHeaderFromHeader(input, 10);
 
         for (String line : input){
             String[] inputStrings = line.split(" ");
             int[] inputs = {Integer.valueOf(inputStrings[1]),Integer.valueOf(inputStrings[3]),Integer.valueOf(inputStrings[5])};
 
             if (inputs[0] == 1){
-
                     Character character = lists.get(inputs[1] - 1).get(0);
                     lists.get(inputs[1]  - 1).remove(0);
                     lists.get(inputs[2]  - 1).add(0, character);
-
             }
             else {
                 List<Character> changingCharacters = new ArrayList<>();
@@ -44,7 +45,6 @@ public class PuzzleSolver {
                     lists.get(inputs[2] - 1).add(0, changingCharacters.get(i));
                 }
             }
-
         }
 
         StringBuilder builder = new StringBuilder();
@@ -74,7 +74,7 @@ public class PuzzleSolver {
         }
     }
 
-    private static void removeInputLines_Day5(List<String> input, int index) {
+    private static void removeHeaderFromHeader(List<String> input, int index) {
         for (int i = 0; i < index; i++){
             input.remove(0);
         }
@@ -98,9 +98,7 @@ public class PuzzleSolver {
       for (String line : input){
           List<Integer> leftInput = convertLineToIntList(convertInputToIntArray(line,0));
           List<Integer> rightInput = convertLineToIntList(convertInputToIntArray(line,1));
-
           // leftInput.containsAll(rightInput) or vice versa for first puzzle
-
 
        LOOP:   for (int i = 0; i < leftInput.size(); i++){
                 if (rightInput.contains(leftInput.get(i))){
