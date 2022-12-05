@@ -7,6 +7,75 @@ import java.util.function.Function;
 
 public class PuzzleSolver {
 
+    public static Function<String, String> solveDay5 = (path) -> {
+        List<String> input = Util.readFile(path);
+
+        List<List<Character>> lists = new ArrayList<>();
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+        lists.add(new ArrayList<>());
+
+        fillStacks_day5(input, lists);
+        removeInputLines_Day5(input, 10);
+
+        for (String line : input){
+            String[] inputStrings = line.split(" ");
+            int[] inputs = {Integer.valueOf(inputStrings[1]),Integer.valueOf(inputStrings[3]),Integer.valueOf(inputStrings[5])};
+
+           for (int i = 0; i < inputs[0]; i++){
+              Character character = lists.get(inputs[1] - 1).get(0);
+              lists.get(inputs[1]  - 1).remove(0);
+              lists.get(inputs[2]  - 1).add(0, character);
+           }
+        }
+
+        StringBuilder builder = new StringBuilder();
+
+        for (List<Character> list : lists){
+            builder.append(list.get(0));
+        }
+
+        return builder.toString();
+    };
+
+    private static void fillStacks_day5(List<String> input, List<List<Character>> list) {
+        for (String line : input){
+            if (line.charAt(1) != '1'){
+                addItemToList_Day5(list.get(0), line, 1);
+                addItemToList_Day5(list.get(1), line, 5);
+                addItemToList_Day5(list.get(2), line, 9);
+                addItemToList_Day5(list.get(3), line, 13);
+                addItemToList_Day5(list.get(4), line, 17);
+                addItemToList_Day5(list.get(5), line, 21);
+                addItemToList_Day5(list.get(6), line, 25);
+                addItemToList_Day5(list.get(7), line, 29);
+                addItemToList_Day5(list.get(8), line, 33);
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static void removeInputLines_Day5(List<String> input, int index) {
+        for (int i = 0; i < index; i++){
+            input.remove(0);
+        }
+    }
+
+    private static void addItemToList_Day5(List<Character> list, String line, int index) {
+        if (line.length() >= index){
+            if (line.charAt(index) != ' '){
+                list.add(line.charAt(index));
+            }
+        }
+    }
+
     /**
      * Check if list contains other list
      */
