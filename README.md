@@ -5,4 +5,4 @@ Day 1: Done </br>
 Day 2: Done </br>
 Day 3: Done </br>
 Day 4: Done </br>
-Day 5: Done Part 1
+Day 5: Done

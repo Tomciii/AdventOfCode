@@ -1,8 +1,6 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 public class PuzzleSolver {
@@ -11,15 +9,11 @@ public class PuzzleSolver {
         List<String> input = Util.readFile(path);
 
         List<List<Character>> lists = new ArrayList<>();
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
-        lists.add(new ArrayList<>());
+        int amountOfLists = 9;
+
+        for (int i = 0; i < amountOfLists; i++){
+            lists.add(new ArrayList<>());
+        }
 
         fillStacks_day5(input, lists);
         removeInputLines_Day5(input, 10);
@@ -28,11 +22,29 @@ public class PuzzleSolver {
             String[] inputStrings = line.split(" ");
             int[] inputs = {Integer.valueOf(inputStrings[1]),Integer.valueOf(inputStrings[3]),Integer.valueOf(inputStrings[5])};
 
-           for (int i = 0; i < inputs[0]; i++){
-              Character character = lists.get(inputs[1] - 1).get(0);
-              lists.get(inputs[1]  - 1).remove(0);
-              lists.get(inputs[2]  - 1).add(0, character);
-           }
+            if (inputs[0] == 1){
+
+                    Character character = lists.get(inputs[1] - 1).get(0);
+                    lists.get(inputs[1]  - 1).remove(0);
+                    lists.get(inputs[2]  - 1).add(0, character);
+
+            }
+            else {
+                List<Character> changingCharacters = new ArrayList<>();
+
+                for (int i = 0; i < inputs[0]; i++){
+                    Character character = lists.get(inputs[1] - 1).get(0);
+                    changingCharacters.add(character);
+                    lists.get(inputs[1]  - 1).remove(0);
+                }
+
+                Collections.reverse(changingCharacters);
+
+                for (int i = 0; i < changingCharacters.size(); i++){
+                    lists.get(inputs[2] - 1).add(0, changingCharacters.get(i));
+                }
+            }
+
         }
 
         StringBuilder builder = new StringBuilder();
