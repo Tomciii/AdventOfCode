@@ -8,7 +8,7 @@ public class PuzzleSolver {
     /**
      * Detect start of packet marker
      */
-    public static Function<String, String> solveDay6 = (path) -> {
+    public static Function<String, Integer> solveDay6 = (path) -> {
       List<String> input = Util.readFile(path);
 
         int distinctChars = 14;
@@ -24,12 +24,12 @@ public class PuzzleSolver {
 
                 if (set.size() == distinctChars){
                     int result = i + distinctChars;
-                    return String.valueOf(result);
+                    return result;
                 }
             }
         }
 
-      return null;
+      return 0;
     };
     /**
      * Moving Items from the stacks around
