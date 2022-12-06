@@ -1,9 +1,11 @@
-package com;
+package com.puzzleSolver;
+
+import com.Util;
 
 import java.util.*;
 import java.util.function.Function;
 
-public class PuzzleSolver {
+public class PuzzleSolver2022 {
 
     /**
      * Detect start of packet marker
