@@ -6,6 +6,32 @@ import java.util.function.Function;
 public class PuzzleSolver {
 
     /**
+     * Detect start of packet marker
+     */
+    public static Function<String, String> solveDay6 = (path) -> {
+      List<String> input = Util.readFile(path);
+
+        int distinctChars = 14;
+
+        for (String line : input){
+            for (int i = 0; i < line.length(); i++){
+                String marker = line.substring(0 + i,distinctChars + i);
+                Set<Character> set = new HashSet<>();
+
+                for (int j = 0; j < distinctChars; j++){
+                    set.add(marker.charAt(j));
+                }
+
+                if (set.size() == distinctChars){
+                    int result = i + distinctChars;
+                    return String.valueOf(result);
+                }
+            }
+        }
+
+      return null;
+    };
+    /**
      * Moving Items from the stacks around
      */
     public static Function<String, String> solveDay5 = (path) -> {
