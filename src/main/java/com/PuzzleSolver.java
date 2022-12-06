@@ -15,7 +15,7 @@ public class PuzzleSolver {
 
         for (String line : input){
             for (int i = 0; i < line.length(); i++){
-                String marker = line.substring(0 + i,distinctChars + i);
+                String marker = line.substring(i, distinctChars + i);
                 Set<Character> set = new HashSet<>();
 
                 for (int j = 0; j < distinctChars; j++){
