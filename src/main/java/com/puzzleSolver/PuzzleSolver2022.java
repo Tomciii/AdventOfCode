@@ -1,11 +1,47 @@
 package com.puzzleSolver;
 
-import com.Util;
+import com.utils.Node;
+import com.utils.Util;
 
 import java.util.*;
 import java.util.function.Function;
 
 public class PuzzleSolver2022 {
+
+    public static Function<String, Integer> solveDay7 = (path) -> {
+        Integer result = 0;
+        List<String> input = Util.readFile(path);
+
+        Node currentNode = null;
+        Node rootNode = null;
+
+        for (String line : input){
+            String symbol = line.split(" ")[0];
+            String command = line.split(" ")[1];
+
+           if (command.equals("cd")){
+               String nodeName = line.split(" ")[2];
+
+               if (nodeName.equals("..")){
+                   currentNode = currentNode.getParentNode();
+               } else if (nodeName.equals("/")){
+                   Node node = new Node(currentNode, nodeName);
+                   currentNode = node;
+                   rootNode = currentNode;
+               } else {
+                   Node node = new Node(currentNode, nodeName);
+                   currentNode = node;
+               }
+           }
+           if (!symbol.equals("$") && !symbol.equals("dir")){
+               currentNode.setValue(currentNode.getValue() + Integer.valueOf(symbol));
+           }
+        }
+
+        rootNode.addAllNodeValues();
+
+        return rootNode.getNodesBelow100k();
+    };
 
     /**
      * Detect start of packet marker

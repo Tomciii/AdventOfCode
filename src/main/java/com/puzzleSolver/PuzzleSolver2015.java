@@ -1,6 +1,6 @@
 package com.puzzleSolver;
 
-import com.Util;
+import com.utils.Util;
 
 import java.util.List;
 import java.util.function.Function;
