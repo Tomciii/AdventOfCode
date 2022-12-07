@@ -9,7 +9,6 @@ import java.util.function.Function;
 public class PuzzleSolver2022 {
 
     public static Function<String, Integer> solveDay7 = (path) -> {
-        Integer result = 0;
         List<String> input = Util.readFile(path);
 
         Node currentNode = null;
@@ -40,7 +39,7 @@ public class PuzzleSolver2022 {
 
         rootNode.addAllNodeValues();
 
-        return rootNode.getNodesBelow100k();
+        return rootNode.findSmallestNodeForDay7(new ArrayList<>()).getValue();
     };
 
     /**

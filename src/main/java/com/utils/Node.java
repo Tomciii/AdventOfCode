@@ -1,9 +1,10 @@
 package com.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Node{
+public class Node implements Comparable<Node> {
 
     private int value;
     private Node parentNode;
@@ -53,7 +54,7 @@ public class Node{
         }
     }
 
-    public int getNodesBelow100k(){
+    public int getNodesBelow100kValue(){
         int result = 0;
         int maxValue = 100000;
         for (Node node : childNodes){
@@ -62,7 +63,7 @@ public class Node{
                     result += node.value;
             }
             else {
-                int partResult = node.getNodesBelow100k();
+                int partResult = node.getNodesBelow100kValue();
                 result += partResult;
 
                     if (node.value <= maxValue)
@@ -71,6 +72,32 @@ public class Node{
         }
 
         return result;
+    }
+
+    public Node findSmallestNodeForDay7(List<Node> nodes){
+        Integer minimalValue = 8381165;
+
+        for (Node node : childNodes){
+            if (node.childNodes.size() == 0){
+                if (node.value >= minimalValue){
+                    nodes.add(node);
+                }
+            }
+            else {
+                node.findSmallestNodeForDay7(nodes);
+
+                if (node.value >= minimalValue){
+                    nodes.add(node);
+                }
+            }
+        }
+
+        Collections.sort(nodes);
+        if (nodes.isEmpty()){
+            return null;
+        }
+
+        return nodes.get(0);
     }
 
     public void addAllNodeValues(){
@@ -83,5 +110,17 @@ public class Node{
              node.parentNode.value += node.value;
          }
         }
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        if (value == o.value){
+            return 0;
+        }
+        else if (value > o.value){
+            return 1;
+        }
+        else
+        return -1;
     }
 }
