@@ -8,6 +8,68 @@ import java.util.function.Function;
 
 public class PuzzleSolver2022 {
 
+    public static Function<String, Integer> solveDay8 = (path) -> {
+        int[][] input = Util.readFileAs2DIntArray(path);
+        Integer result = 2 * input.length + 2*input[0].length - 4;
+
+      OUTER:  for (int i = 1; i < input.length - 1; i++){
+       INNER:     for (int j = 1; j < input[i].length - 1; j++){
+
+                    boolean isVisible = true;
+
+                    for (int k = j - 1; k >= 0; k --){
+                        if (input[i][k] >= input[i][j]){
+                            isVisible = false;
+                        }
+                    }
+
+                    if (isVisible){
+                        result++;
+                        continue INNER;
+                    }
+
+                    isVisible = true;
+
+           for (int k = j + 1; k < input[i].length; k ++){
+               if (input[i][k] >= input[i][j]){
+                   isVisible = false;
+               }
+           }
+
+           if (isVisible){
+               result++;
+               continue INNER;
+           }
+
+           isVisible = true;
+           for (int k = i - 1; k >= 0; k --){
+               if (input[k][j] >= input[i][j]){
+                   isVisible = false;
+               }
+           }
+
+           if (isVisible){
+               result++;
+               continue INNER;
+           }
+
+           isVisible = true;
+           for (int k = i + 1; k < input.length; k ++){
+               if (input[k][j] >= input[i][j]){
+                   isVisible = false;
+               }
+           }
+
+           if (isVisible){
+               result++;
+               continue INNER;
+           }
+            }
+        }
+
+        return result;
+    };
+
     public static Function<String, Integer> solveDay7 = (path) -> {
         List<String> input = Util.readFile(path);
 
