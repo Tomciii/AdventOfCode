@@ -4,6 +4,6 @@ import com.puzzleSolver.*;
 public class Main {
 
     public static void main(String[] args) {
-        PuzzleResultPrinter.printResult(PuzzleSolver2022.solveDay7, "2022/day7.txt");
+        PuzzleResultPrinter.printResult(PuzzleSolver2021.solveDay1, "2021/day1.txt");
     }
 }
