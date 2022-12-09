@@ -11,10 +11,18 @@ public class PuzzleSolver2022 {
     public static Function<String, Integer> solveDay9 = (path) -> {
         List<String> input = Util.readFile(path);
         int[] positionH = {4, 0};
-        int[] positionT = {4, 0};
+        int[] position1 = {4, 0};
+        int[] position2 = {4, 0};
+        int[] position3 = {4, 0};
+        int[] position4 = {4, 0};
+        int[] position5 = {4, 0};
+        int[] position6 = {4, 0};
+        int[] position7 = {4, 0};
+        int[] position8 = {4, 0};
+        int[] position9 = {4, 0};
 
         Set<String> positions = new HashSet<>();
-        positions.add(String.valueOf(positionT[0]) + "," + String.valueOf(positionT[1]));
+        positions.add(String.valueOf(position9[0]) + "," + String.valueOf(position9[1]));
 
         for (String line : input) {
             String[] coords = line.split(" ");
@@ -23,101 +31,123 @@ public class PuzzleSolver2022 {
 
             for (int i = 0; i < length; i++) {
                 switch (direction) {
-                    case "U":
-                        positionH = new int[]{positionH[0] - 1, positionH[1]};
-
-                        if (positionH[1] == positionT[1] && positionH[0] != positionT[0] - 1 && positionH[0] != positionT[0])
-                        {
-                            positionT[0]--;
-                        }
-
-                        if (positionH[0] + 2 == positionT[0]){
-                                if (positionH[1] > positionT[1]){
-                                    positionT[0]--;
-                                    positionT[1]++;
-                                }
-
-                            if (positionH[1] < positionT[1]){
-                                positionT[0]--;
-                                positionT[1]--;
-                            }
-                        }
-
-                        break;
+                        case "U":
+                            positionH = new int[]{positionH[0] - 1, positionH[1]};
+                            break;
                     case "R":
                         positionH = new int[]{positionH[0], positionH[1] + 1};
-
-                        if (positionH[0] == positionT[0] && positionH[1] != positionT[1] + 1 && positionT[1] != positionH[1]) {
-                            positionT[1]++;
-                        }
-
-                        if (positionH[1] == positionT[1] + 2){
-                            if (positionH[0] > positionT[0]){
-                                positionT[0]++;
-                                positionT[1]++;
-                            }
-
-                            if (positionH[0] < positionT[0]){
-                                positionT[0]--;
-                                positionT[1]++;
-                            }
-                        }
-
                         break;
                     case "L":
                         positionH = new int[]{positionH[0], positionH[1] - 1};
-
-                        if (positionH[0] == positionT[0] && positionH[1] != positionT[1] - 1 && positionT[1] != positionH[1]) {
-                            positionT[1]--;
-                        }
-
-                        if (positionH[1] == positionT[1]  - 2){
-                            if (positionH[0] > positionT[0]){
-                                positionT[0]++;
-                                positionT[1]--;
-                            }
-
-                            if (positionH[0] < positionT[0]){
-                                positionT[0]--;
-                                positionT[1]--;
-                            }
-                        }
-
                         break;
                     case "D":
                         positionH = new int[]{positionH[0] + 1, positionH[1]};
-                        if (positionH[1] == positionT[1] && positionH[0] != positionT[0] + 1 && positionH[0] != positionT[0])
-                        {
-                            positionT[0]++;
-                        }
-
-                        if (positionH[0] - 2 == positionT[0]){
-                            if (positionH[1] > positionT[1]){
-                                positionT[0]++;
-                                positionT[1]++;
-                            }
-
-                            if (positionH[1] < positionT[1]){
-                                positionT[0]++;
-                                positionT[1]--;
-                            }
-                        }
-
-
                         break;
-                    default:
-                        break;
-                }
+                } }
 
-                System.out.println("direction " + direction + " H: " + positionH[0] + " - " + positionH[1] + " ,T: " + positionT[0] + " - " + positionT[1]);
-                positions.add(String.valueOf(positionT[0]) +  "," + String.valueOf(positionT[1]));
-                
+            position1 = movePositions(positionH, position1, positions, length, direction);
+            position2 = movePositions(position1, position2, positions, length, direction);
+            position3 = movePositions(position2, position3, positions, length, direction);
+            position4 = movePositions(position3, position4, positions, length, direction);
+            position5 = movePositions(position4, position5, positions, length, direction);
+            position6 = movePositions(position5, position6, positions, length, direction);
+            position7 = movePositions(position6, position7, positions, length, direction);
+            position8 = movePositions(position7, position8, positions, length, direction);
+            position9 = movePositions(position8, position9, positions, length, direction);
 
-            }
+            positions.add(String.valueOf(position9[0]) +  "," + String.valueOf(position9[1]));
         }
 
         return positions.size();
     };
+
+    private static int[] movePositions(int[] positionH, int[] positionT, Set<String> positions, int length, String direction) {
+        for (int i = 0; i < length; i++) {
+            switch (direction) {
+                case "U":
+                    if (positionH[1] == positionT[1] && positionH[0] != positionT[0] - 1 && positionH[0] != positionT[0])
+                    {
+                        positionT[0]--;
+                    }
+
+                    if (positionH[0] + 2 == positionT[0]){
+                            if (positionH[1] > positionT[1]){
+                                positionT[0]--;
+                                positionT[1]++;
+                            }
+
+                        if (positionH[1] < positionT[1]){
+                            positionT[0]--;
+                            positionT[1]--;
+                        }
+                    }
+
+                    break;
+                case "R":
+                    if (positionH[0] == positionT[0] && positionH[1] != positionT[1] + 1 && positionT[1] != positionH[1]) {
+                        positionT[1]++;
+                    }
+
+                    if (positionH[1] == positionT[1] + 2){
+                        if (positionH[0] > positionT[0]){
+                            positionT[0]++;
+                            positionT[1]++;
+                        }
+
+                        if (positionH[0] < positionT[0]){
+                            positionT[0]--;
+                            positionT[1]++;
+                        }
+                    }
+
+                    break;
+                case "L":
+                    if (positionH[0] == positionT[0] && positionH[1] != positionT[1] - 1 && positionT[1] != positionH[1]) {
+                        positionT[1]--;
+                    }
+
+                    if (positionH[1] == positionT[1]  - 2){
+                        if (positionH[0] > positionT[0]){
+                            positionT[0]++;
+                            positionT[1]--;
+                        }
+
+                        if (positionH[0] < positionT[0]){
+                            positionT[0]--;
+                            positionT[1]--;
+                        }
+                    }
+
+                    break;
+                case "D":
+
+                    if (positionH[1] == positionT[1] && positionH[0] != positionT[0] + 1 && positionH[0] != positionT[0])
+                    {
+                        positionT[0]++;
+                    }
+
+                    if (positionH[0] - 2 == positionT[0]){
+                        if (positionH[1] > positionT[1]){
+                            positionT[0]++;
+                            positionT[1]++;
+                        }
+
+                        if (positionH[1] < positionT[1]){
+                            positionT[0]++;
+                            positionT[1]--;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            System.out.println("direction " + direction + " H: " + positionH[0] + " - " + positionH[1] + " ,T: " + positionT[0] + " - " + positionT[1]);
+
+
+        }
+        return positionT;
+    }
 
     public static Function<String, Integer> solveDay8 = (path) -> {
         int[][] input = Util.readFileAs2DIntArray(path);
