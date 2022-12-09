@@ -1,6 +1,7 @@
 package com.puzzleSolver;
 
 import com.utils.Coordinate;
+import com.utils.Coordinates;
 import com.utils.Node;
 import com.utils.Util;
 
@@ -8,6 +9,32 @@ import java.util.*;
 import java.util.function.Function;
 
 public class PuzzleSolver2022 {
+
+    public static Function<String, Integer> solveDay9_2 = (path) -> {
+        List<String> input = Util.readFile(path);
+        Set<String> result = new HashSet<>();
+
+        int ropeLength = 11;
+
+        Coordinates rope = new Coordinates(ropeLength);
+
+        result.add(rope.getLastCoordinate());
+
+        for (String line : input) {
+            String[] coords = line.split(" ");
+            int amountOfHeadMoves = Integer.valueOf(coords[1]);
+            String direction = coords[0];
+
+            for (int i = 0; i < amountOfHeadMoves; i++){
+                rope.moveHeader(direction);
+                rope.moveBody();
+                result.add(rope.getLastCoordinate());
+            }
+        }
+
+        return result.size();
+    };
+
 
 
     public static Function<String, Integer> solveDay9 = (path) -> {
@@ -51,43 +78,13 @@ public class PuzzleSolver2022 {
                         break;
                 }
 
-                    position1 = movePositions_day9(positionH, position1, positions, length, direction, false, false);
-                    position2 = movePositions_day9(position1, position2, positions, length, direction, false, false);
-                    position3 = movePositions_day9(position2, position3, positions, length, direction, false, false);
-                    position4 = movePositions_day9(position3, position4, positions, length, direction, false, false);
-                    position5 = movePositions_day9(position4, position5, positions, length, direction, false, false);
-                    position6 = movePositions_day9(position5, position6, positions, length, direction, false, false);
-                    position7 = movePositions_day9(position6, position7, positions, length, direction, false, false);
-                    position8 = movePositions_day9(position7, position8, positions, length, direction, false, false);
-                    position9 = movePositions_day9(position8, position9, positions, length, direction, false, false);
-                    position10 = movePositions_day9(position9, position10, positions, length, direction, true, true);
+
             }
         }
 
         return positions.size();
     };
 
-    private static boolean isValidMove(Coordinate previous, Coordinate current){
-
-        if (previous.getX() == current.getX() - 1 || previous.getX() == current.getX() || previous.getX() == current.getX() + 1){
-            if (previous.getY() == current.getY()  -1 || previous.getY() == current.getY()  || previous.getY() == current.getY() + 1){
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private static boolean isValidMove(int[]head, int[]tail){
-
-        if (head[0] == tail[0] - 1 || head[0] == tail[0] || head[0] == tail[0] + 1){
-            if (head[1] == tail[1] -1 || head[1] == tail[1] || head[1] == tail[1] + 1){
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public static Function<String, Integer> solveDay8 = (path) -> {
         int[][] input = Util.readFileAs2DIntArray(path);
@@ -757,9 +754,6 @@ public class PuzzleSolver2022 {
 
     public static int[] movePositions_day9(int[] positionH, int[] positionT, Set<String> positions, int length, String direction, boolean doAdd, boolean doLog) {
 
-        if (!isValidMove(positionH, positionT)){
-            return positionT;
-        }
 
         if (positionH[0] == positionT[0] - 2){
             positionT[0]--;
