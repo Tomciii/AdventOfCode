@@ -1,5 +1,6 @@
 package com.puzzleSolver;
 
+import com.utils.Coordinate;
 import com.utils.Node;
 import com.utils.Util;
 
@@ -8,8 +9,12 @@ import java.util.function.Function;
 
 public class PuzzleSolver2022 {
 
+
     public static Function<String, Integer> solveDay9 = (path) -> {
         List<String> input = Util.readFile(path);
+
+        List<Coordinate> rope = new ArrayList<>();
+
         int[] positionH = {4, 0};
         int[] position1 = {4, 0};
         int[] position2 = {4, 0};
@@ -61,6 +66,17 @@ public class PuzzleSolver2022 {
 
         return positions.size();
     };
+
+    private static boolean isValidMove(Coordinate previous, Coordinate current){
+
+        if (previous.getX() == current.getX() - 1 || previous.getX() == current.getX() || previous.getX() == current.getX() + 1){
+            if (previous.getY() == current.getY()  -1 || previous.getY() == current.getY()  || previous.getY() == current.getY() + 1){
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     private static boolean isValidMove(int[]head, int[]tail){
 
@@ -788,7 +804,7 @@ public class PuzzleSolver2022 {
         }
 
         if (doLog)
-            System.out.println("direction " + direction + " H: " + positionH[0] + " " + positionH[1] + " ,T: " + positionT[0] + " " + positionT[1]);
+            System.out.println("direction " + direction + " H: [" + positionH[0] + " " + positionH[1] + "] ,T: [" + positionT[0] + " " + positionT[1]+"]");
 
         if (doAdd){
             positions.add(String.valueOf(positionT[0]) + "," + String.valueOf(positionT[1]));
