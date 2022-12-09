@@ -46,21 +46,58 @@ public class PuzzleSolver2022 {
                         break;
                 }
 
-                position1 = movePositions_day9(lineX, positionH, position1, positions, length, direction, false, false);
-                position2 = movePositions_day9(lineX,position1, position2, positions, length, direction, false, false);
-                position3 = movePositions_day9(lineX,position2, position3, positions, length, direction, false, false);
-                position4 = movePositions_day9(lineX,position3, position4, positions, length, direction, false, false);
-                position5 = movePositions_day9(lineX,position4, position5, positions, length, direction, false, false);
-                position6 = movePositions_day9(lineX,position5, position6, positions, length, direction, false, false);
-                position7 = movePositions_day9(lineX,position6, position7, positions, length, direction, false, false);
-                position8 = movePositions_day9(lineX,position7, position8, positions, length, direction, false, false);
-                position9 = movePositions_day9(lineX,position8, position9, positions, length, direction, true, true);
+                if (isValidMove(positionH, position1)){
+                    position1 = movePositions_day9(lineX, positionH, position1, positions, length, direction, false, false);
+                }
 
+                if (isValidMove(position1, position2)){
+                    position2 = movePositions_day9(lineX,position1, position2, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position2, position3)){
+                    position3 = movePositions_day9(lineX,position2, position3, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position3, position4)){
+                    position4 = movePositions_day9(lineX,position3, position4, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position4, position5)){
+                    position5 = movePositions_day9(lineX,position4, position5, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position5, position6)){
+                    position6 = movePositions_day9(lineX,position5, position6, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position6, position7)){
+                    position7 = movePositions_day9(lineX,position6, position7, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position7, position8)){
+                    position8 = movePositions_day9(lineX,position7, position8, positions, length, direction, false, false);
+                }
+
+                if (isValidMove(position8, position9)){
+                    position9 = movePositions_day9(lineX,position8, position9, positions, length, direction, true, true);
+                }
             }
         }
 
         return positions.size();
     };
+
+    private static boolean isValidMove(int[]head, int[]tail){
+
+        if (head[0] == tail[0] - 1 || head[0] == tail[0] || head[0] == tail[0] - 1){
+            if (head[1] == tail[1] -1 || head[1] == tail[1] || head[1] == tail[1] + 1){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static Function<String, Integer> solveDay8 = (path) -> {
         int[][] input = Util.readFileAs2DIntArray(path);
         Integer result = 0;
@@ -727,7 +764,7 @@ public class PuzzleSolver2022 {
         return result;
     };
 
-    private static int[] movePositions_day9(int linex, int[] positionH, int[] positionT, Set<String> positions, int length, String direction, boolean doAdd, boolean doLog) {
+    public static int[] movePositions_day9(int linex, int[] positionH, int[] positionT, Set<String> positions, int length, String direction, boolean doAdd, boolean doLog) {
 
         switch (direction) {
             case "U":
@@ -759,13 +796,13 @@ public class PuzzleSolver2022 {
 
                 if (positionH[1] == positionT[1] + 2) {
                     if (positionH[0] > positionT[0]) {
-                        positionT[0]++;
+                        positionT[0]--;
                         positionT[1]++;
                         break;
                     }
 
                     if (positionH[0] < positionT[0]) {
-                        positionT[0]--;
+                        positionT[0]++;
                         positionT[1]++;
                         break;
                     }
