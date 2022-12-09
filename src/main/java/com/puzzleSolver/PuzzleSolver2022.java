@@ -752,7 +752,7 @@ public class PuzzleSolver2022 {
 
                 break;
             case "R":
-                if (positionH[0] == positionT[0] && positionH[1] != positionT[1] + 1 && positionT[1] != positionH[1]) {
+                if (positionH[0] == positionT[0] &&  positionH[1] == positionT[1] + 2) {
                     positionT[1]++;
                     break;
                 }
@@ -773,7 +773,7 @@ public class PuzzleSolver2022 {
 
                 break;
             case "L":
-                if (positionH[0] == positionT[0] && positionH[1] != positionT[1] - 1 && positionT[1] > positionH[1]) {
+                if (positionH[0] == positionT[0] && positionH[1] == positionT[1] - 2) {
                     positionT[1]--;
                     break;
                 }
