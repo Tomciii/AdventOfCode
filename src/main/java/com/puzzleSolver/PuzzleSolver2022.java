@@ -1,6 +1,5 @@
 package com.puzzleSolver;
 
-import com.utils.Coordinate;
 import com.utils.Coordinates;
 import com.utils.Node;
 import com.utils.Util;
@@ -13,9 +12,7 @@ public class PuzzleSolver2022 {
     public static Function<String, Integer> solveDay9_2 = (path) -> {
         List<String> input = Util.readFile(path);
         Set<String> result = new HashSet<>();
-
-        int ropeLength = 11;
-
+        int ropeLength = 10;
         Coordinates rope = new Coordinates(ropeLength);
 
         result.add(rope.getLastCoordinate());
@@ -27,62 +24,12 @@ public class PuzzleSolver2022 {
 
             for (int i = 0; i < amountOfHeadMoves; i++){
                 rope.moveHeader(direction);
-                rope.moveBody();
+                rope.moveTail();
                 result.add(rope.getLastCoordinate());
             }
         }
 
         return result.size();
-    };
-
-
-
-    public static Function<String, Integer> solveDay9 = (path) -> {
-        List<String> input = Util.readFile(path);
-
-        List<Coordinate> rope = new ArrayList<>();
-
-        int[] positionH = {4, 0};
-        int[] position1 = {4, 0};
-        int[] position2 = {4, 0};
-        int[] position3 = {4, 0};
-        int[] position4 = {4, 0};
-        int[] position5 = {4, 0};
-        int[] position6 = {4, 0};
-        int[] position7 = {4, 0};
-        int[] position8 = {4, 0};
-        int[] position9 = {4, 0};
-        int[] position10 = {4, 0};
-
-        Set<String> positions = new HashSet<>();
-        positions.add(String.valueOf(position9[0]) + "," + String.valueOf(position9[1]));
-
-        for (String line : input) {
-            String[] coords = line.split(" ");
-            int length = Integer.valueOf(coords[1]);
-            String direction = coords[0];
-
-            for (int i = 0; i < length; i++) {
-                switch (direction) {
-                    case "U":
-                        positionH = new int[]{positionH[0] - 1, positionH[1]};
-                        break;
-                    case "R":
-                        positionH = new int[]{positionH[0], positionH[1] + 1};
-                        break;
-                    case "L":
-                        positionH = new int[]{positionH[0], positionH[1] - 1};
-                        break;
-                    case "D":
-                        positionH = new int[]{positionH[0] + 1, positionH[1]};
-                        break;
-                }
-
-
-            }
-        }
-
-        return positions.size();
     };
 
 

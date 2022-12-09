@@ -49,7 +49,7 @@ public class Coordinates {
         return this.coordinates.get(this.coordinates.size() - 1).toString();
     }
 
-    public void moveBody() {
+    public void moveTail() {
         for (int i = 1; i < this.coordinates.size(); i++){
             Coordinate previous = this.coordinates.get(i- 1);
             Coordinate current = this.coordinates.get(i);
