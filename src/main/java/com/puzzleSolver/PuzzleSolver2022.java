@@ -20,12 +20,12 @@ public class PuzzleSolver2022 {
         int[] position7 = {4, 0};
         int[] position8 = {4, 0};
         int[] position9 = {4, 0};
-        int lineX = 0;
+        int[] position10 = {4, 0};
+
         Set<String> positions = new HashSet<>();
         positions.add(String.valueOf(position9[0]) + "," + String.valueOf(position9[1]));
 
         for (String line : input) {
-            lineX++;
             String[] coords = line.split(" ");
             int length = Integer.valueOf(coords[1]);
             String direction = coords[0];
@@ -46,41 +46,16 @@ public class PuzzleSolver2022 {
                         break;
                 }
 
-                if (isValidMove(positionH, position1)){
-                    position1 = movePositions_day9(lineX, positionH, position1, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position1, position2)){
-                    position2 = movePositions_day9(lineX,position1, position2, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position2, position3)){
-                    position3 = movePositions_day9(lineX,position2, position3, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position3, position4)){
-                    position4 = movePositions_day9(lineX,position3, position4, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position4, position5)){
-                    position5 = movePositions_day9(lineX,position4, position5, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position5, position6)){
-                    position6 = movePositions_day9(lineX,position5, position6, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position6, position7)){
-                    position7 = movePositions_day9(lineX,position6, position7, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position7, position8)){
-                    position8 = movePositions_day9(lineX,position7, position8, positions, length, direction, false, false);
-                }
-
-                if (isValidMove(position8, position9)){
-                    position9 = movePositions_day9(lineX,position8, position9, positions, length, direction, true, true);
-                }
+                    position1 = movePositions_day9(positionH, position1, positions, length, direction, false, false);
+                    position2 = movePositions_day9(position1, position2, positions, length, direction, false, false);
+                    position3 = movePositions_day9(position2, position3, positions, length, direction, false, false);
+                    position4 = movePositions_day9(position3, position4, positions, length, direction, false, false);
+                    position5 = movePositions_day9(position4, position5, positions, length, direction, false, false);
+                    position6 = movePositions_day9(position5, position6, positions, length, direction, false, false);
+                    position7 = movePositions_day9(position6, position7, positions, length, direction, false, false);
+                    position8 = movePositions_day9(position7, position8, positions, length, direction, false, false);
+                    position9 = movePositions_day9(position8, position9, positions, length, direction, false, false);
+                    position10 = movePositions_day9(position9, position10, positions, length, direction, true, true);
             }
         }
 
@@ -89,7 +64,7 @@ public class PuzzleSolver2022 {
 
     private static boolean isValidMove(int[]head, int[]tail){
 
-        if (head[0] == tail[0] - 1 || head[0] == tail[0] || head[0] == tail[0] - 1){
+        if (head[0] == tail[0] - 1 || head[0] == tail[0] || head[0] == tail[0] + 1){
             if (head[1] == tail[1] -1 || head[1] == tail[1] || head[1] == tail[1] + 1){
                 return false;
             }
@@ -764,105 +739,60 @@ public class PuzzleSolver2022 {
         return result;
     };
 
-    public static int[] movePositions_day9(int linex, int[] positionH, int[] positionT, Set<String> positions, int length, String direction, boolean doAdd, boolean doLog) {
+    public static int[] movePositions_day9(int[] positionH, int[] positionT, Set<String> positions, int length, String direction, boolean doAdd, boolean doLog) {
 
-        switch (direction) {
-            case "U":
-                if (positionH[1] == positionT[1] && positionH[0] != positionT[0] - 1 && positionH[0] != positionT[0]) {
-                    positionT[0]--;
-                    break;
-                }
+        if (!isValidMove(positionH, positionT)){
+            return positionT;
+        }
 
-                if (positionH[0] + 2 == positionT[0]) {
-                    if (positionH[1] > positionT[1]) {
-                        positionT[0]--;
-                        positionT[1]++;
-                        break;
-                    }
+        if (positionH[0] == positionT[0] - 2){
+            positionT[0]--;
 
-                    if (positionH[1] < positionT[1]) {
-                        positionT[0]--;
-                        positionT[1]--;
-                        break;
-                    }
-                }
+            if (positionH[1] == positionT[1] - 1){
+                positionT[1]--;
+            }
 
-                break;
-            case "R":
-                if (positionH[0] == positionT[0] &&  positionH[1] == positionT[1] + 2) {
-                    positionT[1]++;
-                    break;
-                }
+            if (positionH[1] == positionT[1] + 1){
+                positionT[1]++;
+            }
+        } else if (positionH[0] == positionT[0] + 2){
+            positionT[0]++;
 
-                if (positionH[1] == positionT[1] + 2) {
-                    if (positionH[0] > positionT[0]) {
-                        positionT[0]--;
-                        positionT[1]++;
-                        break;
-                    }
+            if (positionH[1] == positionT[1] - 1){
+                positionT[1]--;
+            }
 
-                    if (positionH[0] < positionT[0]) {
-                        positionT[0]++;
-                        positionT[1]++;
-                        break;
-                    }
-                }
+            if (positionH[1] == positionT[1] + 1){
+                positionT[1]++;
+            }
+        } else if (positionH[1] == positionT[1] - 2){
+            positionT[1]--;
 
-                break;
-            case "L":
-                if (positionH[0] == positionT[0] && positionH[1] == positionT[1] - 2) {
-                    positionT[1]--;
-                    break;
-                }
+            if (positionH[0] == positionT[0] - 1){
+                positionT[0]--;
+            }
 
-                if (positionH[1] == positionT[1] - 2) {
-                    if (positionH[0] > positionT[0]) {
-                        positionT[0]++;
-                        positionT[1]--;
-                        break;
-                    }
+            if (positionH[0] == positionT[0] + 1){
+                positionT[0]++;
+            }
+        } else if (positionH[1] == positionT[1] + 2){
+            positionT[1]++;
 
-                    if (positionH[0] < positionT[0]) {
-                        positionT[0]--;
-                        positionT[1]--;
-                        break;
-                    }
-                }
+            if (positionH[0] == positionT[0] - 1){
+                positionT[0]--;
+            }
 
-                break;
-            case "D":
-
-                if (positionH[1] == positionT[1] && positionH[0] != positionT[0] + 1 && positionH[0] != positionT[0]) {
-                    positionT[0]++;
-                    break;
-                }
-
-                if (positionH[0] - 2 == positionT[0]) {
-                    if (positionH[1] > positionT[1]) {
-                        positionT[0]++;
-                        positionT[1]++;
-                        break;
-                    }
-
-                    if (positionH[1] < positionT[1]) {
-                        positionT[0]++;
-                        positionT[1]--;
-                        break;
-                    }
-                }
-                break;
-            default:
-                break;
+            if (positionH[0] == positionT[0] + 1){
+                positionT[0]++;
+            }
         }
 
         if (doLog)
-            System.out.println(linex + "direction " + direction + " H: " + positionH[0] + "_" + positionH[1] + " ,T: " + positionT[0] + "_" + positionT[1]);
+            System.out.println("direction " + direction + " H: " + positionH[0] + " " + positionH[1] + " ,T: " + positionT[0] + " " + positionT[1]);
 
         if (doAdd){
             positions.add(String.valueOf(positionT[0]) + "," + String.valueOf(positionT[1]));
         }
-
-
 
         return positionT;
     }
