@@ -21,6 +21,7 @@ public class Coordinates {
     private List<Coordinate> coordinates;
 
     public Coordinates(int amountOfCoordinates){
+
         coordinates = new ArrayList<>();
         size = amountOfCoordinates;
         for (int i = 0; i < amountOfCoordinates; i++){

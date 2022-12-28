@@ -9,6 +9,8 @@ import java.util.function.Function;
 
 public class PuzzleSolver2022 {
 
+
+
     public static Function<String, Integer> solveDay9_2 = (path) -> {
         List<String> input = Util.readFile(path);
         Set<String> result = new HashSet<>();
