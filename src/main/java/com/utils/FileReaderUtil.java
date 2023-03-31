@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Util {
+public class FileReaderUtil {
 
     public static int[][] readFileAs2DIntArray(String path){
         List<String> file = readFile(path);
@@ -30,7 +30,7 @@ public class Util {
     }
 
     public static List<String> readFile(String path) {
-        try (BufferedReader bufferedReader = Util.getBufferedReader(path)) {
+        try (BufferedReader bufferedReader = FileReaderUtil.getBufferedReader(path)) {
             String line;
 
             List<String> result = new ArrayList<>();

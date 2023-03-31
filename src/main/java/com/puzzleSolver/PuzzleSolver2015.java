@@ -1,6 +1,6 @@
 package com.puzzleSolver;
 
-import com.utils.Util;
+import com.utils.FileReaderUtil;
 
 import java.util.List;
 import java.util.function.Function;
@@ -10,7 +10,7 @@ public class PuzzleSolver2015 {
     public static Function<String, Integer> solveDay2 = (path) -> {
         Integer result = 0;
 
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         for (String line : input){
             String[] dimensions = line.split("x");
@@ -47,7 +47,7 @@ public class PuzzleSolver2015 {
 
     public static Function<String, Integer> solveDay1 = (path) -> {
         int result = 0;
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         for (int i = 0; i < input.get(0).length(); i++){
             if (input.get(0).charAt(i) == '('){
