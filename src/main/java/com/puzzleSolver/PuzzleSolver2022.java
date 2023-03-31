@@ -1,8 +1,8 @@
 package com.puzzleSolver;
 
 import com.utils.Coordinates;
+import com.utils.FileReaderUtil;
 import com.utils.Node;
-import com.utils.Util;
 
 import java.util.*;
 import java.util.function.Function;
@@ -12,7 +12,7 @@ public class PuzzleSolver2022 {
 
 
     public static Function<String, Integer> solveDay9_2 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         Set<String> result = new HashSet<>();
         int ropeLength = 10;
         Coordinates rope = new Coordinates(ropeLength);
@@ -36,7 +36,7 @@ public class PuzzleSolver2022 {
 
 
     public static Function<String, Integer> solveDay8 = (path) -> {
-        int[][] input = Util.readFileAs2DIntArray(path);
+        int[][] input = FileReaderUtil.readFileAs2DIntArray(path);
         Integer result = 0;
 
 
@@ -93,7 +93,7 @@ public class PuzzleSolver2022 {
         return result;
     };
     public static Function<String, Integer> solveDay7 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         Node currentNode = null;
         Node rootNode = null;
@@ -129,7 +129,7 @@ public class PuzzleSolver2022 {
      * Detect start of packet marker
      */
     public static Function<String, Integer> solveDay6 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         int distinctChars = 14;
 
@@ -155,7 +155,7 @@ public class PuzzleSolver2022 {
      * Moving Items from the stacks around
      */
     public static Function<String, String> solveDay5 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         List<List<Character>> lists = new ArrayList<>();
         int amountOfLists = 9;
@@ -205,7 +205,7 @@ public class PuzzleSolver2022 {
      */
     public static Function<String, Integer> solveDay4 = (path) -> {
         Integer result = 0;
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
 
         for (String line : input) {
             List<Integer> leftInput = convertLineToIntList(convertInputToIntArray(line, 0));
@@ -228,7 +228,7 @@ public class PuzzleSolver2022 {
      */
     public static Function<String, Integer> solveDay3_2 = (path) -> {
         Integer result = 0;
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         for (int k = 0; k < input.size(); k = k + 3) {
             char[] lineAsArray = input.get(k).toCharArray();
             char[] lineAsArray2 = input.get(k + 1).toCharArray();
@@ -412,7 +412,7 @@ public class PuzzleSolver2022 {
      */
     public static Function<String, Integer> solveDay3 = (path) -> {
         Integer result = 0;
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         for (int k = 0; k < input.size(); k++) {
             char[] lineAsArray = input.get(k).toCharArray();
 
@@ -589,7 +589,7 @@ public class PuzzleSolver2022 {
      * Day 2_2: Rock Paper Scissors Puzzle
      */
     public static Function<String, Integer> solveDay2_2 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         int result = 0;
 
         for (String line : input) {
@@ -632,7 +632,7 @@ public class PuzzleSolver2022 {
      * Day 2: Rock Paper Scissors Puzzle
      */
     public static Function<String, Integer> solveDay2 = (path) -> {
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         int result = 0;
 
         for (String line : input) {
@@ -672,7 +672,7 @@ public class PuzzleSolver2022 {
      */
     public static Function<String, List<Integer>> solveDay1 = (path) -> {
         List<Integer> result = new ArrayList<>();
-        List<String> input = Util.readFile(path);
+        List<String> input = FileReaderUtil.readFile(path);
         List<Integer> calorieList = new ArrayList<>();
         int currentSum = 0;
         int biggestSum = 0;
