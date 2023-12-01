@@ -1,4 +1,4 @@
-package com.puzzleSolver;
+package com.adventofcode.year2022;
 
 import com.utils.Coordinates;
 import com.utils.FileReaderUtil;
@@ -7,7 +7,7 @@ import com.utils.Node;
 import java.util.*;
 import java.util.function.Function;
 
-public class PuzzleSolver2022 {
+public class AdventOfCode2022 {
 
 
 

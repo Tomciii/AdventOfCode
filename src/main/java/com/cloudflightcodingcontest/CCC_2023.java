@@ -1,4 +1,4 @@
-package com.CCC;
+package com.cloudflightcodingcontest;
 
 import com.utils.FileReaderUtil;
 

@@ -1,11 +1,14 @@
 package com;
-import com.CCC.CCC_2023;
+import com.adventofcode.year2023.AdventOfCode2023;
+import com.cloudflightcodingcontest.CCC_2023;
+import com.utils.PuzzleResultPrinter;
 
 public class Main {
 
     public static void main(String[] args) {
-    //    PuzzleResultPrinter.printResult(PuzzleSolver2022.solveDay9_2, "2022/day9.txt");
 
-        CCC_2023.CCC_2023_Level2();
+        AdventOfCode2023 adventOfCode2023 = new AdventOfCode2023();
+
+        System.out.println(adventOfCode2023.day1_1("2023/day1.txt"));
     }
 }

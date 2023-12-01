@@ -1,11 +1,11 @@
-package com.puzzleSolver;
+package com.adventofcode.year2021;
 
 import com.utils.FileReaderUtil;
 
 import java.util.List;
 import java.util.function.Function;
 
-public class PuzzleSolver2021 {
+public class AdventOfCode2021 {
 
     public static Function<String, Integer> solveDay1 = (path) -> {
       Integer result = 0;
